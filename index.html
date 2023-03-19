@@ -1,28 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js" type="text/javascript"></script>
-    <title>Document</title>
-</head>
-<body>
-    <h1>Classification d'images avec mobile net</h1>
-    <p>C'est un <span id="result"></span>...</p>
-    <img src="../../A2/" alt="fr" crossorigin="anonymous" id="image" width="400">
-
-    <script>
-        const image = document.querySelector('#id');
-        const result = document.querySelector('#result')
-
-
-        const classifier = ml5.imageClassifier('MobileNet', ()=>console.log('modèle chargé!'))
-
-        classifier.predict(image, function(err, results){
-            result.innerText = results[0].className;
-        })
-    </script>
-    
-</body>
+    <title>Détection des yeux et agrandissement x2</title>
+    <style>
+      #video {
+        display: block;
+        margin: 0 auto;
+        width: 640px;
+        height: 480px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1>Détection des yeux et agrandissement x2</h1> -->
+    <video id="video"></video>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
