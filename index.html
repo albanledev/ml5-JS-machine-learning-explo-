@@ -4,13 +4,41 @@
     <meta charset="UTF-8">
     <title>Détection des yeux et agrandissement x2</title>
     <style>
-      #video {
-        display: block;
-        margin: 0 auto;
-        width: 640px;
-        height: 480px;
-        position: absolute;
-      }
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #83a4d4, #b6fbff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.content {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.p5Canvas {
+    display: block;
+    margin: 0 auto;
+    border: 3px solid #83a4d4;
+    border-radius: 5px;
+}
     </style>
   </head>
   <body>
