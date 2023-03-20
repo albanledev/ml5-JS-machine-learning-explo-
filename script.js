@@ -11,7 +11,7 @@ function setup() {
   poseNet.on('pose', gotPoses);
 
   // création de la checkbox
-  createCheckbox('Afficher cercle rouge', true).changed(toggleCircle);
+  createCheckbox('Clown MODE', true).changed(toggleCircle);
 }
 
 function gotPoses(poses) {
