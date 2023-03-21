@@ -1,7 +1,7 @@
 let video;
 let poseNet;
 let pose;
-let showCircle = true; // variable pour savoir si le cercle doit être affiché ou pas
+let particles = [];
 
 function setup() {
   createCanvas(640, 480);
@@ -9,9 +9,6 @@ function setup() {
   video.hide();
   poseNet = ml5.poseNet(video, modelLoaded);
   poseNet.on('pose', gotPoses);
-
-  // création de la checkbox
-  createCheckbox('Clown MODE', true).changed(toggleCircle);
 }
 
 function gotPoses(poses) {
@@ -24,14 +21,46 @@ function modelLoaded() {
   console.log('poseNet ready');
 }
 
-function toggleCircle() {
-  showCircle = !showCircle; // inverse la valeur de la variable showCircle
+function draw() {
+  background(0);
+
+  // Add new particles
+  if (pose) {
+    particles.push(new Particle(pose.nose.x, pose.nose.y));
+  }
+
+  // Display and update particles
+  for (let i = particles.length - 1; i >= 0; i--) {
+    particles[i].display();
+    particles[i].update();
+
+    // Remove particles that have faded out
+    if (particles[i].alpha <= 0) {
+      particles.splice(i, 1);
+    }
+  }
 }
 
-function draw() {
-  image(video, 0, 0);
-  if (pose && showCircle) { // affiche le cercle uniquement si la checkbox est cochée
-    fill(255, 0, 0);
-    ellipse(pose.nose.x, pose.nose.y, 64);
+class Particle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.vx = random(-1, 1);
+    this.vy = random(-1, 1);
+    this.alpha = 255;
+    this.size = random(10, 40);
+    this.color = color(random(255), random(255), random(255));
+  }
+
+  display() {
+    noStroke();
+    fill(this.color, this.alpha);
+    ellipse(this.x, this.y, this.size);
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.alpha -= 2;
   }
 }
